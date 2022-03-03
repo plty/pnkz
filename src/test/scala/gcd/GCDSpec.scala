@@ -18,7 +18,7 @@ import chisel3.experimental.BundleLiterals._
   * sbt 'testOnly gcd.GcdDecoupledTester'
   * }}}
   */
-class GCDSpec extends AnyFreeSpec with ChiselScalatestTester {
+class GCDSpec extends FreeSpec with ChiselScalatestTester {
 
   "Gcd should calculate proper greatest common denominator" in {
     test(new DecoupledGcd(16)) { dut =>

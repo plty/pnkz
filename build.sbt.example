@@ -1,0 +1,27 @@
+
+name := "skeleton"
+
+version := "1.0"
+
+scalaVersion := "2.11.11"
+
+resolvers ++= Seq(
+  Resolver.sonatypeRepo("snapshots"),
+  Resolver.sonatypeRepo("releases")
+)
+
+// The Chisel projects we know we'll require.
+// This could be any (or all) of the BIG4 projects
+val chiselDeps = chisel.dependencies(Seq(
+    ("edu.berkeley.cs" %% "firrtl" % "1.1-SNAPSHOT", "firrtl"),
+    ("edu.berkeley.cs" %% "firrtl-interpreter" % "1.1-SNAPSHOT", "firrtl-interpreter"),
+    ("edu.berkeley.cs" %% "chisel3" % "3.1-SNAPSHOT", "chisel3"),
+    ("edu.berkeley.cs" %% "chisel-iotesters" % "1.2-SNAPSHOT", "chisel-testers")
+))
+
+libraryDependencies ++= Seq(
+  "org.scalatest" %% "scalatest" % "3.0.1",
+  "org.scalacheck" %% "scalacheck" % "1.13.4") ++ chiselDeps.libraries
+
+lazy val skeleton = (project in file("."))
+  .dependsOn(chiselDeps.projects.map(classpathDependency(_)): _*)

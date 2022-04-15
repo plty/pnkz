@@ -1,14 +1,15 @@
 /* Minimal top level for the Chisel Hello World.
   Wire reset to 0. */
 
-module top(input [1:0] sw, output led);
+module top(input a, input b, output led);
   wire res;
 
   assign res = 1'h0;
 
   Hello h(
       .reset( res ),
-      .io_sw( sw ),
-      .io_led( led )
+      .io_a( a ),
+      .io_b( b ),
+      .io_out( led )
   );
 endmodule

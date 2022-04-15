@@ -9,12 +9,10 @@ import chisel3._
   */
 class Hello extends Module {
   val io = IO(new Bundle {
-    val a = Input(Bool())
-    val b = Input(Bool())
-    val out = Output(Bool())
+    val sw = Input(UInt(2.W))
+    val led = Output(UInt(1.W))
   })
-
-  io.out := io.a ^ io.b;
+  io.led := io.sw(0) & io.sw(1);
 }
 
 /**
